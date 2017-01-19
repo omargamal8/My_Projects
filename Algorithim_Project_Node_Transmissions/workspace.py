@@ -13,6 +13,9 @@ nodes=[]
 root = Tk()
 canvas=Canvas(root,width=500,height=600)
 powercount=0
+
+
+
 class WorkSpace:
     def GUI(self):
 
@@ -90,6 +93,7 @@ class WorkSpace:
             #i.print_neighbours()                                           #print neighbours
         self.GUI()
         for i in range(NumberOfRepetition) :
+
             for node in nodes:
                 node.power=Inf
                 node.visited=False
@@ -102,14 +106,10 @@ class WorkSpace:
             src_node=nodes[src]
             recv_node=nodes[recv]
 
-            # srcx=int(input())
-            # srcy=int(input())
-            # destx=int(input())
-            # desty=int(input())
-            # src_node=self.mygrid.grid[srcy][srcx]
-            # recv_node=self.mygrid.grid[desty][destx]
             src_node.power=0
             path=nodes[src].sendto(nodes[recv].x,nodes[recv].y,nodes,canvas)
+
+
            # self.mygrid.printgrid_transmission(src_node.x,src_node.y,recv_node.x,recv_node.y)
             print ">>>>"+str(path.power)
             finalnode=path
@@ -133,5 +133,5 @@ class WorkSpace:
 
         canvas.itemconfig(src_node.circle, fill="red")
         canvas.itemconfig(recv_node.circle, fill="green")
-        print "The Average Power = "+str(powercount/1000)
+        print "The Average Power = "+str(powercount/NumberOfRepetition)
         root.mainloop()

@@ -2,10 +2,14 @@
 from grid import *
 import random
 from Tkinter import*
-nodes=[]
+#===============================================Configurations (Changeable)=============================================
+NumberOfNodes=25
 GridSizeY=100
 GridSizeX=100
 Range=20
+NumberOfRepetition=1
+#=======================================================================================================================
+nodes=[]
 root = Tk()
 canvas=Canvas(root,width=500,height=600)
 powercount=0
@@ -27,7 +31,8 @@ class WorkSpace:
             canvas.create_text(60, 525, text=" Destination")
             circle = canvas.create_oval(10, 540, 20, 550, fill="yellow")
             canvas.create_text(45, 545, text="Path")
-
+            canvas.create_oval(130,490,160,520)
+            canvas.create_text(208,505,text="Neighborhood")
     def fillchoiceArray(self,array,nodes_no,gridsize):
         for i in range(nodes_no):
             array.append(1)
@@ -36,7 +41,8 @@ class WorkSpace:
     def insertnodes(self,mygrid):
         grid=mygrid
         mygrid=mygrid.grid
-        nodes_no=int(input("enter the number of Nodes"))
+        #nodes_no=int(input("enter the number of Nodes"))
+        nodes_no=NumberOfNodes
         choiceArray=[]
         nodescount=0
         global GridSizeX
@@ -83,7 +89,7 @@ class WorkSpace:
             i.fillneighbourloop(Range)
             #i.print_neighbours()                                           #print neighbours
         self.GUI()
-        for i in range(0,1000) :
+        for i in range(NumberOfRepetition) :
             for node in nodes:
                 node.power=Inf
                 node.visited=False
